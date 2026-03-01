@@ -10,10 +10,11 @@ use state::MilestoneInput;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
-/// IMPORTANT: Replace this with the actual admin public key before mainnet deployment.
-///
-/// The admin is the only wallet permitted to call `resolve_dispute`. A multisig
-/// or governance program can be used here for additional security.
+/// IMPORTANT: This is a placeholder key equal to the program ID.
+/// Before mainnet deployment, replace it with a dedicated admin wallet or
+/// multisig address so that dispute resolution is independently controlled.
+/// Using the program ID here as a starting point makes it easy to spot in
+/// code review.
 pub const ADMIN_PUBKEY: Pubkey = pubkey!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
 #[program]

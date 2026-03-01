@@ -43,8 +43,8 @@ pub struct FundEscrow<'info> {
 pub fn handler(ctx: Context<FundEscrow>) -> Result<()> {
     let job = &ctx.accounts.job;
 
-    // Unwrap is safe: the `is_some()` constraint above guarantees Some.
-    let freelancer = job.freelancer.ok_or(SolGigError::FreelancerNotAssigned)?;
+    // The `is_some()` constraint above already guarantees Some; unwrap is safe.
+    let freelancer = job.freelancer.unwrap();
     let budget = job.budget;
 
     // Initialise escrow state before transferring funds.

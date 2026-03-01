@@ -54,13 +54,13 @@ pub struct ResolveDispute<'info> {
 // ---------------------------------------------------------------------------
 
 pub fn handler(ctx: Context<ResolveDispute>, release_to_freelancer: bool) -> Result<()> {
-    // Calculate the unreleased portion of the escrowed budget.
+    // `released` must never exceed `amount`; if it does, the escrow data is corrupted.
     let unreleased = ctx
         .accounts
         .escrow
         .amount
         .checked_sub(ctx.accounts.escrow.released)
-        .ok_or(SolGigError::Overflow)?;
+        .ok_or(SolGigError::InvalidEscrowState)?;
 
     // Transfer the unreleased funds to the winner of the dispute.
     // The `close = client` attribute on the escrow account will transfer any

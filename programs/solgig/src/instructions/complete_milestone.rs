@@ -41,10 +41,10 @@ pub fn handler(ctx: Context<CompleteMilestone>, milestone_index: u8) -> Result<(
 
     require!(idx < job.milestones.len(), SolGigError::InvalidMilestoneIndex);
 
-    // Only Pending milestones can be marked Complete; guard against re-submission.
+    // Milestone must be Pending; Complete means already submitted, Approved means already paid.
     require!(
         job.milestones[idx].status == MilestoneStatus::Pending,
-        SolGigError::MilestoneAlreadyApproved
+        SolGigError::MilestoneNotPending
     );
 
     job.milestones[idx].status = MilestoneStatus::Complete;

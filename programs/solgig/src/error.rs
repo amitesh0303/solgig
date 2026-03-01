@@ -76,6 +76,9 @@ pub enum SolGigError {
     #[msg("Milestone has already been approved and paid")]
     MilestoneAlreadyApproved,
 
+    #[msg("Milestone must be in Pending state to be marked complete")]
+    MilestoneNotPending,
+
     // ── Application state ──────────────────────────────────────────────────
     #[msg("The application does not belong to this job")]
     InvalidApplication,
@@ -87,6 +90,8 @@ pub enum SolGigError {
     ApplicationNotAccepted,
 
     // ── Arithmetic ─────────────────────────────────────────────────────────
+    #[msg("Escrow state is inconsistent (released > amount); this should never happen")]
+    InvalidEscrowState,
     #[msg("Arithmetic overflow")]
     Overflow,
 }
